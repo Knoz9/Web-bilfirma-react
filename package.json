@@ -20,10 +20,11 @@
   "scripts": {
     "start": "cross-env PUBLIC_URL=/ craco start",
     "start:game": "cross-env IN_GAME_DEV=1 craco start",
-    "build": "rimraf build && craco build",
+    "build": "CI=false rimraf build && craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
+  
   "eslintConfig": {
     "extends": [
       "react-app",
