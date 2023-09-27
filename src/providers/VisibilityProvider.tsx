@@ -32,6 +32,17 @@ export const VisibilityProvider: React.FC = ({children}) => {
     return () => window.removeEventListener("keydown", keyHandler)
   }, [visible])
 
+/* return (
+  <VisibilityCtx.Provider
+    value={{
+      visible,
+      setVisible
+    }}
+  >
+  <div style={{ visibility: visible ? 'visible' : 'hidden', height: '100%'}}>
+    {children}
+  </div>
+</VisibilityCtx.Provider>) */
   return (
     <VisibilityCtx.Provider
       value={{
@@ -39,10 +50,11 @@ export const VisibilityProvider: React.FC = ({children}) => {
         setVisible
       }}
     >
-    <div style={{ visibility: visible ? 'visible' : 'hidden', height: '100%'}}>
-      {children}
-    </div>
-  </VisibilityCtx.Provider>)
+      <div style={{ visibility: 'visible', height: '100%'}}>
+        {children}
+      </div>
+    </VisibilityCtx.Provider>
+  );
 }
 
 export const useVisibility = () => useContext<VisibilityProviderValue>(VisibilityCtx as Context<VisibilityProviderValue>)
