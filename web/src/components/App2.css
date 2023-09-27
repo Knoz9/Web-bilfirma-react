@@ -1,0 +1,486 @@
+.nui-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 80vw;
+  max-width: 2064px;
+}
+
+/* Dark mode styles */
+.dark-mode body, 
+.dark-mode .popup-thing, 
+.dark-mode .nui-wrapper {
+    background-color: rgb(44, 44, 44);
+    color: white;
+}
+
+
+
+.dark-mode .car-item, 
+.dark-mode .car-info {
+    background-color: #444444; /* A slightly lighter shade of black for differentiation */
+    border:rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.dark-mode .search-bar-container {
+  background-color: #44444498; /* A slightly lighter shade of black for differentiation */
+    border:rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.dark-mode .car-group.edit-mode {
+    border: 2px solid #444; /* A border to provide some definition in dark mode */
+}
+
+.dark-mode .car-image {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow for dark mode */
+}
+
+.dark-mode .search-input, 
+.dark-mode .year-input, 
+.dark-mode .price-input {
+    background-color: #444;
+    border: 1px solid #555; 
+    color: white;
+}
+
+.dark-mode .box-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Making the shadow a bit more pronounced for dark mode */
+}
+
+
+.car-group {
+  max-width: 16vw;
+  margin: 1.3vw;
+}
+
+.counter {
+  font-size: calc(4px + 0.7vw);
+  margin-left: 10px;
+}
+
+@keyframes pop {
+  0%, 100% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1); /* you can adjust this value for a more noticeable pop */
+  }
+  100% {
+    transform: scale(1); /* you can adjust this value for a more noticeable pop */
+  }
+  
+}
+
+@keyframes reversepop {
+  0%, 100% {
+      transform: scale(1);
+  }
+  100% {
+      transform: scale(0.8); /* you can adjust this value for a more noticeable pop */
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0px) rotate(0deg); }
+  25% { transform: translateX(-2px) rotate(-1deg); }
+  50% { transform: translateX(0px) rotate(0deg); }
+  75% { transform: translateX(2px) rotate(1deg); }
+  100% { transform: translateX(0px) rotate(0deg); }
+}
+
+.shake-effect {
+  animation: shake 0.2s infinite;
+}
+
+.car-item {
+  position: relative;
+  /* Other styles */
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.modal-card {
+  background: #fff;
+  padding: 10vh;
+  border-radius: 8px;
+  max-width: 10vw;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-size: 1.3vw;
+  
+  display: flex;              /* turn on flexbox */
+  flex-direction: column;     /* stack children vertically */
+  align-items: center;        /* center children horizontally */
+  justify-content: center;    /* center children vertically */
+}
+
+.modal-card input[type="text"],
+.modal-card input[type="number"],
+.modal-card textarea,
+.modal-card select {
+  width: 100%;                /* Takes 80% width of its container for a little padding effect */      /* Increases padding for top/bottom and left/right */
+  margin: 1vh 0;             /* Space between inputs */
+  box-sizing: border-box;    /* Makes sure padding doesn't increase the overall width */
+  font-size: inherit;        /* Inherits the font size from the modal card which is set to 'large' */
+  border: 1px solid #ccc;    /* Standard border */
+  border-radius: 4px;        /* Rounds the corners */
+}
+
+
+
+.delete-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 20%;  /* Makes it circular */
+  width: 24px;
+  height: 24px;
+  font-size: 1vw;
+  font-weight: bold;
+}
+
+
+.car-item {
+  cursor: pointer;
+  transition: transform 0.3s;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0px solid #e0e0e0; /* Adds a subtle border */
+  border-radius: 1vw; /* Rounds the corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a lift effect */
+  background-color: #ffffff; /* Optional: you can set a background color */
+}
+
+.car-item:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.car-item.expanded {
+  /* Styles to make the card appear bigger. Adjust as per design requirements. */
+  transform: scale(1.2);
+  transition: transform 0.3s;
+  z-index: 1; /* To ensure the card appears on top of other elements when expanded */
+}
+
+.expanded-options {
+  /* Styles for the options shown in expanded mode. Adjust as per design requirements. */
+  display: flex;
+  flex-direction: left;
+  padding: 0.4vw;
+  gap: 1.5vw; /* Spacing between options */
+}
+
+.car-group.edit-mode {
+  margin: 28px
+}
+
+.expanded-options button , .search-main-bar button, #rensButton , #darkMode{
+  font-size: 0.75vw;         /* Bigger font size */
+  width: 5vw;
+  height: 5vh;
+  border: 2px solid #ffffff00; /* Optional thicker border */
+  border-radius: 0.5vw;     /* Optional border-radius for rounded corners */
+  cursor: pointer;        /* Makes it clear it's clickable */
+  transition: background-color 0.3s, color 0.3s; /* Optional smooth color transition for hover effect */
+  
+}
+
+#addNewCarButton, #delCarButton{
+  font-size: 0.75vw;         /* Bigger font size */
+  width: 4vw;
+  height: 5vh;
+  border: 2px solid #ffffff00; /* Optional thicker border */
+  border-radius: 0.5vw;     /* Optional border-radius for rounded corners */
+  cursor: pointer;        /* Makes it clear it's clickable */
+  transition: background-color 0.3s, color 0.3s; /* Optional smooth color transition for hover effect */
+}
+#addNewCarButton:hover {
+  background-color: hsl(129, 97%, 47%); /* Optional: Color when hovered */
+  color: #fff;            /* Optional: Text color when hovered */
+}
+
+#darkMode:hover {
+  background-color: hsl(0, 0%, 21%); /* Optional: Color when hovered */
+  color: #fff;            /* Optional: Text color when hovered */
+}
+
+
+.dark-mode #darkMode:hover {
+  background-color: hsl(0, 0%, 92%); /* Optional: Color when hovered */
+  color: #262626;            /* Optional: Text color when hovered */
+}
+
+#editButton{
+  font-size: 0.75vw;         /* Bigger font size */
+  width: 4vw;
+  height: 5vh;
+  border: 2px solid #ffffff00; /* Optional thicker border */
+  border-radius: 0.5vw;     /* Optional border-radius for rounded corners */
+  cursor: pointer;        /* Makes it clear it's clickable */
+  transition: background-color 0.3s, color 0.3s; /* Optional smooth color transition for hover effect */
+}
+
+
+.expanded-options span {
+  font-size: 0.8vw;         /* Bigger font size */
+  font-style: oblique;
+  text-align: center;
+}
+
+#editButton:hover, #delCarButton:hover{
+  background-color: #ff0000; /* Optional: Color when hovered */
+  color: #fff;            /* Optional: Text color when hovered */
+}
+.dark-mode #editButton:hover, .dark-mode #delCarButton:hover{
+  background-color: #ff0000; /* Optional: Color when hovered */
+  color: #fff;            /* Optional: Text color when hovered */
+}
+.dark-mode #addNewCarButton:hover{
+  background-color: #00ff04; /* Optional: Color when hovered */
+  color: #fff;            /* Optional: Text color when hovered */
+}
+
+.expanded-options button:hover , .search-main-bar button:hover, #rensButton:hover{
+  background-color: #9600ad; /* Optional: Color when hovered */
+  color: #fff;            /* Optional: Text color when hovered */
+}
+
+.dark-mode #AltButton:hover, .dark-mode #rensButton:hover, .dark-mode .expanded-options button:hover{
+  background-color: #9600ad; /* Optional: Color when hovered */
+  color: #fff;            /* Optional: Text color when hovered */
+}
+
+.car-image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dark-mode #addNewCarButton, .dark-mode #delCarButton, .dark-mode #rensButton , .dark-mode #darkMode, .dark-mode #editButton,  .dark-mode #AltButton{
+  background-color: #262626;
+  color: #e0e0e0;
+}
+.dark-mode .expanded-options button {
+  background-color: #262626;
+  color: #e0e0e0;
+}
+
+.car-image {
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.car-info {
+  text-align: center;
+  font-size: 1.3vw;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding: 10px;
+}
+
+.car-model-name {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.car-item.zoom-in-effect, 
+.car-image.zoom-in-effect {
+    animation: pop 0.3s;  /* Adjust the time as needed */
+}
+.car-item.zoom-out-effect, 
+.car-image.zoom-out-effect {
+    animation: reversepop 0.3s;  /* Adjust the time as needed */
+    animation-fill-mode: forwards;
+}
+
+/* Override effects for edit mode */
+.car-group.edit-mode .car-item.zoom-in-effect, 
+.car-group.edit-mode .car-image.zoom-in-effect {
+    animation: none;
+}
+
+.car-group.edit-mode .car-item.zoom-out-effect, 
+.car-group.edit-mode .car-image.zoom-out-effect {
+    animation: none;
+}
+
+.popup-thing {
+  width: 80vw;
+  overflow-y: auto;
+  max-height: 80vh;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  padding: 20px;
+  border-radius: 1vw;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: auto;
+  position: absolute; /* or position: fixed; if you want it to stay at the top center even when scrolling */
+  top: 2vh;          /* Adjust this value for the desired distance from the top */
+  left: 50%;          /* Centering on the horizontal axis */
+  transform: translateX(-50%);  /* Ensures perfect horizontal centering regardless of the element's width */
+  padding: 2vw 2vw;
+}
+
+.car-inner-container {
+  align-items: flex-start; 
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.brand-section img {
+  text-align: left;
+  margin: 10px 0;
+  height: calc(40px + 0.5vw);
+  grid-column: 1 / -1;
+  margin-left: 1vw;
+  margin-right: 69vw;
+  max-height: 20vh;
+  max-width: auto;
+}
+
+.brand-and-cars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16vw, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: flex-start;
+  position: sticky;
+  top: 0;
+  width: 50vw;
+  background: rgba(255, 255, 255, 0.784);
+  z-index: 1000;
+  padding: 10px 10px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 1vw; /* Rounds the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  transition: height 0.3s ease;
+}
+
+.search-main-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.expanded-search-options {
+  display: flex;
+  flex-direction: row; /* ensure options appear in a row */
+  justify-content: right;
+  gap: 1vw; /* adjust gap between options as needed */
+  margin-top: 10px; /* adjust top margin for spacing between search bar and options */
+  width: 100%;
+}
+
+
+
+/* Style for the Logo */
+.search-bar-container img {
+  height: 5vw; /* Adjust height accordingly */
+  width: auto;
+  margin-right: 15px; /* Spacing between the logo and the search input */
+}
+
+.popup-thing .car-image {
+  width: 100%;
+  height: 100%;
+  max-height: 10vw;
+  cursor: pointer;
+  background-color: #aaaaaa;
+  border-radius: 0.8vw;
+}
+
+.search-input {
+  width: 50%;
+  padding: 10px;
+  font-size: calc(3px + 1vw);
+  border: 1px solid #ccc;
+  border-radius: 0.4vw;
+}
+
+.year-input {
+  width: 10%;
+  height: 3vh;
+  padding: 6px;
+  font-size: calc(0.8vw);
+  border: 1px solid #ccc;
+  border-radius: 0.4vw;
+}
+
+.price-input {
+  width: 15%;
+  height: 3vh;
+  padding: 8px;
+  margin-left: 10px;
+  font-size: calc(1.2vw);
+  border: 1px solid #ccc;
+  border-radius: 0.4vw;
+}
+
+.close-button:hover {
+  background-color: #c0392b;
+}
+
+.brand-header {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.popup-thing .car-image-filler {
+  width: 18vw;
+  height: 1vw;
+  background-color: transparent;
+}
+
+.filler-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
