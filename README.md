@@ -4,7 +4,7 @@
 Welcome to the ReactJS GTA 5 Dealership project! This project is a front-end application that simulates a car dealership within the GTA 5 universe. Using ReactJS, it showcases a variety of vehicles available in GTA 5, providing an interactive and engaging way for players and fans to explore the game's diverse vehicle selection.
 
 ## Demo
-To get a feel for what the dealership looks like and how it operates, check out our live demo: [ReactJS GTA 5 Dealership Demo](https://km-bilfirma.netlify.app).
+[ReactJS GTA 5 Dealership Demo](https://km-bilfirma.netlify.app).
 
 ## Features
 - **Interactive Showroom:** Browse through a collection of cars available in GTA 5, each with detailed descriptions and images.
